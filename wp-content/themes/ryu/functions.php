@@ -11,11 +11,6 @@
 if ( ! isset( $content_width ) )
 	$content_width = 696; /* pixels */
 
-/*
- * Load Jetpack compatibility file.
- */
-require( get_template_directory() . '/inc/jetpack.php' );
-
 if ( ! function_exists( 'ryu_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -25,22 +20,6 @@ if ( ! function_exists( 'ryu_setup' ) ) :
  * support post thumbnails.
  */
 function ryu_setup() {
-
-	/**
-	 * Custom template tags for this theme.
-	 */
-	require( get_template_directory() . '/inc/template-tags.php' );
-
-	/**
-	 * Custom functions that act independently of the theme templates
-	 */
-	require( get_template_directory() . '/inc/extras.php' );
-
-	/**
-	 * Customizer additions
-	 */
-	require( get_template_directory() . '/inc/customizer.php' );
-
 	/**
 	 * Make theme available for translation
 	 * Translations can be filed in the /languages/ directory
@@ -82,31 +61,13 @@ add_action( 'after_setup_theme', 'ryu_setup' );
 /**
  * Setup the WordPress core custom background feature.
  *
- * Use add_theme_support to register support for WordPress 3.4+
- * as well as provide backward compatibility for WordPress 3.3
- * using feature detection of wp_get_theme() which was introduced
- * in WordPress 3.4.
- *
- * @todo Remove the 3.3 support when WordPress 3.6 is released.
- *
  * Hooks into the after_setup_theme action.
  */
 function ryu_register_custom_background() {
-	$args = array(
+	add_theme_support( 'custom-background', apply_filters( 'ryu_custom_background_args', array(
 		'default-color' => 'fff',
 		'default-image' => '',
-	);
-
-	$args = apply_filters( 'ryu_custom_background_args', $args );
-
-	if ( function_exists( 'wp_get_theme' ) ) {
-		add_theme_support( 'custom-background', $args );
-	} else {
-		define( 'BACKGROUND_COLOR', $args['default-color'] );
-		if ( ! empty( $args['default-image'] ) )
-			define( 'BACKGROUND_IMAGE', $args['default-image'] );
-		add_custom_background();
-	}
+	) ) );
 }
 add_action( 'after_setup_theme', 'ryu_register_custom_background' );
 
@@ -196,19 +157,17 @@ function ryu_scripts() {
 
 	wp_enqueue_style( 'ryu-playfair-display' );
 
-	if ( has_nav_menu( 'primary' ) ) {
+	if ( has_nav_menu( 'primary' ) )
 		wp_enqueue_script( 'ryu-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
-	}
 
 	wp_enqueue_script( 'ryu-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
 		wp_enqueue_script( 'comment-reply' );
-	}
 
-	if ( is_singular() && wp_attachment_is_image() ) {
+	if ( is_singular() && wp_attachment_is_image() )
 		wp_enqueue_script( 'ryu-keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20120202' );
-	}
+
 	wp_enqueue_script( 'ryu-theme', get_template_directory_uri() . '/js/ryu.js', array( 'jquery' ), '20130319', true );
 }
 add_action( 'wp_enqueue_scripts', 'ryu_scripts' );
@@ -225,11 +184,6 @@ function ryu_admin_fonts( $hook_suffix ) {
 	wp_enqueue_style( 'ryu-playfair-display' );
 }
 add_action( 'admin_enqueue_scripts', 'ryu_admin_fonts' );
-
-/**
- * Implement the Custom Header feature
- */
-require( get_template_directory() . '/inc/custom-header.php' );
 
 /**
  * Count the number of footer sidebars to enable dynamic classes for the footer
@@ -270,42 +224,44 @@ function ryu_top_sidebar_class() {
 	if ( $class )
 		echo 'class="wrap clear ' . $class . '"';
 }
-/**
- * Implement Tonesque
- */
-require( get_template_directory() . '/inc/tonesque.php' );
 
 /**
- * Define common regex lookup patterns
+ * Implement Tonesque if need be
  */
-if ( ! defined( 'WP_THEMES_IMAGE_REGEX' ) )
-	define( 'WP_THEMES_IMAGE_REGEX', '/(<img.+src=[\'"]([^\'"]+)[\'"].*?>)/i' );
-
-if ( ! function_exists( 'ryu_image_grabber' ) ):
-/**
- * Return the HTML output for first image found for a post.
- *
- * @param int post_id ID for parent post
- * @param string the_content
- * @return boolean|string image url or false if no match
- */
-function ryu_image_grabber( $post_id, $the_content = '' ) {
-	global $wpdb;
-	$image_src = '';
-	if ( empty( $the_content ) )
-		$the_content = get_the_content();
-
-	$first_image = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_parent = %d AND post_type = 'attachment' AND INSTR(post_mime_type, 'image') ORDER BY menu_order ASC LIMIT 0,1", (int) $post_id ) );
-
-	// Try to get the image for the linked image (not attached)
-	$output = preg_match( WP_THEMES_IMAGE_REGEX, $the_content, $matches );
-
-	if ( isset( $matches[2] ) )
-		$image_src = $matches[2];
-
-	if ( ! empty( $image_src ) )
-		return $image_src;
-
-	return false;
+function ryu_load_bundled_tonesque() {
+	if ( ! class_exists( 'Tonesque' ) ) {
+		require( get_template_directory() . '/inc/tonesque.php' );
+	}
 }
-endif; // Check ryu_image_grabber()
+add_action( 'wp_loaded', 'ryu_load_bundled_tonesque' );
+
+/**
+ * Implement the Custom Header feature
+ */
+require get_template_directory() . '/inc/custom-header.php';
+
+/**
+ * Custom template tags for this theme.
+ */
+require get_template_directory() . '/inc/template-tags.php';
+
+/**
+ * Custom functions that act independently of the theme templates
+ */
+require get_template_directory() . '/inc/extras.php';
+
+/**
+ * Customizer additions
+ */
+require get_template_directory() . '/inc/customizer.php';
+
+/*
+ * Load Jetpack compatibility file.
+ */
+require get_template_directory() . '/inc/jetpack.php';
+
+/**
+ * WordPress.com-specific functions and definitions
+ */
+if ( file_exists( get_template_directory() . '/inc/wpcom.php' ) )
+	require get_template_directory() . '/inc/wpcom.php';

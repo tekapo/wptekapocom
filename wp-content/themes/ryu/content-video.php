@@ -2,12 +2,10 @@
 /**
  * @package Ryu
  */
-?>
 
-<?php
-	// Access global variable directly to set content_width
-	if ( isset( $GLOBALS['content_width'] ) )
-		$GLOBALS['content_width'] = 984;
+// Access global variable directly to set content_width
+if ( isset( $GLOBALS['content_width'] ) )
+	$GLOBALS['content_width'] = 984;
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'clear' ); ?>>
@@ -20,11 +18,9 @@
 					$categories_list = get_the_category_list( __( ', ', 'ryu' ) );
 					if ( $categories_list && ryu_categorized_blog() )
 						echo '<span class="categories-links">' . $categories_list . '</span>';
-				?>
 
-				<?php
 					if ( ! is_single() ) :
-						the_title( '<h1 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" title="' . esc_attr( sprintf( __( 'Permalink to %s', 'ryu' ), the_title_attribute( 'echo=0' ) ) ) . '" rel="bookmark">', '</a></h1>' );
+						the_title( '<h1 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h1>' );
 					else :
 						the_title( '<h1 class="entry-title">', '</h1>' );
 					endif;
@@ -53,7 +49,7 @@
 					'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'ryu' ) . '</span>',
 					'after'       => '</div>',
 					'link_before' => '<span>',
-					'link_after'  => '</span>'
+					'link_after'  => '</span>',
 				) );
 			?>
 		</div><!-- .entry-content -->

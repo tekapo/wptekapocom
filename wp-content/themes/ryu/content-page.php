@@ -8,8 +8,13 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<div class="entry-wrap wrap clear">
+		<?php
+			if ( '' != get_the_post_thumbnail() ) :
+				the_post_thumbnail( 'ryu-featured-thumbnail' );
+			endif;
+		?>
 		<header class="entry-header">
-			<h1 class="entry-title"><?php the_title(); ?></h1>
+			<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 			<div class="entry-meta">
 				<?php if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) ) : ?>
 				<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'ryu' ), __( '1 Comment', 'ryu' ), __( '% Comments', 'ryu' ) ); ?></span>
@@ -26,7 +31,7 @@
 					'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'ryu' ) . '</span>',
 					'after'       => '</div>',
 					'link_before' => '<span>',
-					'link_after'  => '</span>'
+					'link_after'  => '</span>',
 				) );
 			?>
 		</div><!-- .entry-content -->

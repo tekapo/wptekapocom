@@ -21,8 +21,6 @@ function ryu_customize_register( $wp_customize ) {
 
 	$wp_customize->add_setting( 'email_link', array(
 		'default'       => '',
-		'type'          => 'theme_mod',
-		'capability'    => 'edit_theme_options',
 	) );
 
 	$wp_customize->add_control( 'email_link', array(
@@ -34,8 +32,6 @@ function ryu_customize_register( $wp_customize ) {
 
 	$wp_customize->add_setting( 'twitter_link', array(
 		'default'       => '',
-		'type'          => 'theme_mod',
-		'capability'    => 'edit_theme_options',
 	) );
 
 	$wp_customize->add_control( 'twitter_link', array(
@@ -47,8 +43,6 @@ function ryu_customize_register( $wp_customize ) {
 
 	$wp_customize->add_setting( 'facebook_link', array(
 		'default'       => '',
-		'type'          => 'theme_mod',
-		'capability'    => 'edit_theme_options',
 	) );
 
 	$wp_customize->add_control( 'facebook_link', array(
@@ -60,8 +54,6 @@ function ryu_customize_register( $wp_customize ) {
 
 	$wp_customize->add_setting( 'pinterest_link', array(
 		'default'       => '',
-		'type'          => 'theme_mod',
-		'capability'    => 'edit_theme_options',
 	) );
 
 	$wp_customize->add_control( 'pinterest_link', array(
@@ -73,8 +65,6 @@ function ryu_customize_register( $wp_customize ) {
 
 	$wp_customize->add_setting( 'google_plus_link', array(
 		'default'       => '',
-		'type'          => 'theme_mod',
-		'capability'    => 'edit_theme_options',
 	) );
 
 	$wp_customize->add_control( 'google_plus_link', array(
@@ -86,8 +76,6 @@ function ryu_customize_register( $wp_customize ) {
 
 	$wp_customize->add_setting( 'linkedin_link', array(
 		'default'       => '',
-		'type'          => 'theme_mod',
-		'capability'    => 'edit_theme_options',
 	) );
 
 	$wp_customize->add_control( 'linkedin_link', array(
@@ -99,8 +87,6 @@ function ryu_customize_register( $wp_customize ) {
 
 	$wp_customize->add_setting( 'flickr_link', array(
 		'default'       => '',
-		'type'          => 'theme_mod',
-		'capability'    => 'edit_theme_options',
 	) );
 
 	$wp_customize->add_control( 'flickr_link', array(
@@ -112,8 +98,6 @@ function ryu_customize_register( $wp_customize ) {
 
 	$wp_customize->add_setting( 'github_link', array(
 		'default'       => '',
-		'type'          => 'theme_mod',
-		'capability'    => 'edit_theme_options',
 	) );
 
 	$wp_customize->add_control( 'github_link', array(
@@ -125,8 +109,6 @@ function ryu_customize_register( $wp_customize ) {
 
 	$wp_customize->add_setting( 'dribbble_link', array(
 		'default'       => '',
-		'type'          => 'theme_mod',
-		'capability'    => 'edit_theme_options',
 	) );
 
 	$wp_customize->add_control( 'dribbble_link', array(
@@ -138,8 +120,6 @@ function ryu_customize_register( $wp_customize ) {
 
 	$wp_customize->add_setting( 'vimeo_link', array(
 		'default'       => '',
-		'type'          => 'theme_mod',
-		'capability'    => 'edit_theme_options',
 	) );
 
 	$wp_customize->add_control( 'vimeo_link', array(
@@ -151,8 +131,6 @@ function ryu_customize_register( $wp_customize ) {
 
 	$wp_customize->add_setting( 'youtube_link', array(
 		'default'       => '',
-		'type'          => 'theme_mod',
-		'capability'    => 'edit_theme_options',
 	) );
 
 	$wp_customize->add_control( 'youtube_link', array(
@@ -164,8 +142,6 @@ function ryu_customize_register( $wp_customize ) {
 
 	$wp_customize->add_setting( 'tumblr_link', array(
 		'default'       => '',
-		'type'          => 'theme_mod',
-		'capability'    => 'edit_theme_options',
 	) );
 
 	$wp_customize->add_control( 'tumblr_link', array(

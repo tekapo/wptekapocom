@@ -33,12 +33,12 @@
 					'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'ryu' ) . '</span>',
 					'after'       => '</div>',
 					'link_before' => '<span>',
-					'link_after'  => '</span>'
+					'link_after'  => '</span>',
 				) );
 			?>
 			<?php
 				if ( ! is_single() ) :
-					the_title( '<h1 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" title="' . esc_attr( sprintf( __( 'Permalink to %s', 'ryu' ), the_title_attribute( 'echo=0' ) ) ) . '" rel="bookmark">', '</a></h1>' );
+					the_title( '<h1 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h1>' );
 				else :
 					the_title( '<h1 class="entry-title">', '</h1>' );
 				endif;

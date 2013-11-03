@@ -158,6 +158,9 @@ class Tonesque {
 	 *
  	 */
 	function contrast() {
+		if ( ! $this->color )
+			return false;
+
 		$c = $this->color->getMaxContrastColor();
 		return implode( $c->toRgbInt(), ',' );
 	}

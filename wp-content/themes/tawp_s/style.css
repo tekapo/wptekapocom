@@ -667,9 +667,6 @@ h1.entry-title {
 	font-style: normal;
 	background-color: #EEEEEE;
 	border-radius: 20px;
-/*	background-image:url(images/l1b.png),url(images/l2b.png);
-	background-repeat:no-repeat,no-repeat;
-	background-position:5% 5%, 95% 95%;*/
 	padding:30px 30px 10px 30px;
 	margin-bottom: 30px;
 }

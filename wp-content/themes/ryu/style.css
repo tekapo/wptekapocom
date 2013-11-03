@@ -1,12 +1,12 @@
 /*
 Theme Name: Ryu
-Theme URI: http://theme.wordpress.com/themes/ryu
+Theme URI: http://theme.wordpress.com/themes/ryu/
 Author: Automattic
-Author URI: http://automattic.com
-Description: Ryu is a clutter-free theme for personal bloggers. It has a great readability with a large font size, and the one-column layout is perfect for displaying large images. Optional widgets are located at the top panel with social media links and a search field. Background color for an image post will automatically match the uploaded image in the post.
-Version: 1.0
-License: GNU General Public License
-License URI: license.txt
+Author URI: http://automattic.com/
+Description: Ryu is a clutter-free theme for personal bloggers. It has great readability with a large font size, and the one-column layout is perfect for displaying large images. Optional widgets are located at the top panel with social media links and a search field. Background color for an image post will automatically match the uploaded image in the post.
+Version: 1.1
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: black, white, light, one-column, fixed-width, custom-background, custom-colors, custom-header, custom-menu, featured-images, flexible-header, post-formats, rtl-language-support, sticky-post, translation-ready
 
 This theme, like WordPress, is licensed under the GPL.
@@ -102,12 +102,12 @@ IE9 uses WOFF which is base64 encoded to allow cross-site embedding.
 So unfortunately, IE9 will throw a console error, but it'll still work.
 */
 @font-face {
-	font-family: 'Genericons';
-	src: url('fonts/genericons-regular-webfont.eot');
-	src: url('fonts/genericons-regular-webfont.eot?#iefix') format('embedded-opentype'),
-		 url('fonts/genericons-regular-webfont.woff') format('woff'),
-		 url('fonts/genericons-regular-webfont.ttf') format('truetype'),
-		 url('fonts/genericons-regular-webfont.svg#genericonsregular') format('svg');
+	font-family: Genericons;
+	src: url(fonts/genericons-regular-webfont.eot);
+	src: url(fonts/genericons-regular-webfont.eot?#iefix) format("embedded-opentype"),
+		 url(fonts/genericons-regular-webfont.woff) format("woff"),
+		 url(fonts/genericons-regular-webfont.ttf) format("truetype"),
+		 url(fonts/genericons-regular-webfont.svg#genericonsregular) format("svg");
 	font-weight: normal;
 	font-style: normal;
 }
@@ -115,7 +115,7 @@ So unfortunately, IE9 will throw a console error, but it'll still work.
 .genericon:after {
 	display: inline-block;
 	-webkit-font-smoothing: antialiased;
-	font: normal 16px/1 'Genericons';
+	font: normal 16px/1 Genericons;
 	font-size: 1.6rem;
 	vertical-align: top;
 }
@@ -130,7 +130,7 @@ input,
 select,
 textarea {
 	color: #000;
-	font-family: Georgia, Times, 'Times New Roman', serif;
+	font-family: Georgia, Times, "Times New Roman", serif;
 	font-size: 23px;
 	line-height: 1.4782608695;
 }
@@ -150,7 +150,7 @@ textarea {
 /* Headings */
 h1,h2,h3,h4,h5,h6 {
 	clear: both;
-	font-family: 'Playfair Display', serif;
+	font-family: "Playfair Display", serif;
 	font-weight: 700;
 	margin-bottom: 17px;
 }
@@ -224,12 +224,13 @@ blockquote em, blockquote i, blockquote cite {
 	font-style: normal;
 }
 blockquote p {
-	font-family: 'Playfair Display', serif;
+	font-family: "Playfair Display", serif;
 	font-size: 38px;
 	line-height: 1.3421052631;
 	margin-bottom: 51px;
 }
-blockquote cite {
+blockquote cite,
+.quote-caption {
 	color: #808080;
 	font: 18px/1.8888888888 Lato, sans-serif;
 	font-weight: 400;
@@ -238,12 +239,16 @@ blockquote cite {
 	position: relative;
 	text-transform: uppercase;
 }
+.quote-caption {
+	display: inline;
+}
 blockquote cite a,
-blockquote cite a:hover {
+.quote-caption a {
 	color: #808080;
 }
-blockquote cite:before {
-	content: '';
+blockquote cite:before,
+.quote-caption:before {
+	content: "";
 	background: #000;
 	width: 40px;
 	height: 1px;
@@ -256,7 +261,7 @@ address {
 }
 pre {
 	background: #f5f5f5;
-	font-family: 'Courier 10 Pitch', Courier, monospace;
+	font-family: "Courier 10 Pitch", Courier, monospace;
 	font-size: 19px;
 	line-height: 1.7894736842;
 	margin-bottom: 34px;
@@ -265,7 +270,7 @@ pre {
 	max-width: 100%;
 }
 code, kbd, tt, var {
-	font: 19px/1.7894736842 Monaco, Consolas, 'Andale Mono', 'DejaVu Sans Mono', monospace;
+	font: 19px/1.7894736842 Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
 }
 abbr, acronym {
 	border-bottom: 1px dotted #000;
@@ -297,7 +302,7 @@ big {
 	font-size: 125%;
 }
 figure {
-	margin: 0;
+	margin: 0 0 51px;
 }
 table {
 	margin: 0 0 34px;
@@ -352,14 +357,14 @@ input[type="submit"]:active {
 input[type="checkbox"],
 input[type="radio"] {
 	-moz-box-sizing: border-box;
-	box-sizing: border-box; /* Addresses box sizing set to content-box in IE8/9 */
+	box-sizing:      border-box; /* Addresses box sizing set to content-box in IE8/9 */
 	padding: 0; /* Addresses excess padding in IE8/9 */
 	vertical-align: middle;
 }
 input[type="search"] {
 	-webkit-appearance: textfield; /* Addresses appearance set to searchfield in S5, Chrome */
 	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+	box-sizing:      border-box;
 }
 input[type="search"]::-webkit-search-decoration { /* Corrects inner padding displayed oddly in S5, Chrome on OSX */
 	-webkit-appearance: none;
@@ -375,7 +380,7 @@ input[type="password"],
 input[type="search"],
 textarea {
 	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+	box-sizing:      border-box;
 	border-radius: 0;
 	color: #111;
 	border: 1px solid rgba(0, 0, 0, 0.1);
@@ -426,10 +431,10 @@ input[type="submit"],
 .entry-format-badge,
 a.entry-format-badge:before {
 	-webkit-transition: all 0.2s ease-out;
-	-moz-transition: all 0.2s ease-out;
-	-ms-transition: all 0.2s ease-out;
-	-o-transition: all 0.2s ease-out;
-	transition: all 0.2s ease-out;
+	-moz-transition:    all 0.2s ease-out;
+	-ms-transition:     all 0.2s ease-out;
+	-o-transition:      all 0.2s ease-out;
+	transition:         all 0.2s ease-out;
 }
 
 /* Alignment */
@@ -483,7 +488,7 @@ a.entry-format-badge:before {
 /* Clearing */
 .clear:before,
 .clear:after {
-	content: '';
+	content: "";
 	display: table;
 }
 .clear:after {
@@ -538,7 +543,7 @@ body {
 	height: 32px;
 }
 .social-links a {
-	background-color: rgba(255,255,255,0.15);
+	background-color: rgba(255, 255, 255, 0.15);
 	border-radius: 50%;
 	color: #fff;
 	display: inline-block;
@@ -549,46 +554,46 @@ body {
 	height: 32px;
 }
 .social-links a:hover {
-	background-color: rgba(255,255,255,0.2);
+	background-color: rgba(255, 255, 255, 0.2);
 }
 .social-links a:before {
 	line-height: 2;
 }
 .email-link a:before {
-	content: '\f410';
+	content: "\f410";
 }
 .facebook-link a:before {
-	content: '\f203';
+	content: "\f203";
 }
 .twitter-link a:before {
-	content: '\f202';
+	content: "\f202";
 }
 .google-link a:before {
-	content: '\f206';
+	content: "\f206";
 }
 .pinterest-link a:before {
-	content: '\f210';
+	content: "\f210";
 }
 .linkedin-link a:before {
-	content: '\f208';
+	content: "\f208";
 }
 .flickr-link a:before {
-	content: '\f211';
+	content: "\f211";
 }
 .github-link a:before {
-	content: '\f200';
+	content: "\f200";
 }
 .dribbble-link a:before {
-	content: '\f201';
+	content: "\f201";
 }
 .vimeo-link a:before {
-	content: '\f212';
+	content: "\f212";
 }
 .youtube-link a:before {
-	content: '\f213';
+	content: "\f213";
 }
 .tumblr-link a:before {
-	content: '\f214';
+	content: "\f214";
 }
 #search-wrapper .searchform {
 	margin: 0 auto;
@@ -633,16 +638,16 @@ body {
 	outline: 0;
 }
 .widgets-trigger a:before {
-	content: '\f419';
+	content: "\f419";
 	margin-top: 7px;
 }
 .social-links-trigger a:before {
-	content: '\f107';
+	content: "\f107";
 	font-size: 24px;
 	margin-top: 4px;
 }
 .search-trigger a:before {
-	content: '\f400';
+	content: "\f400";
 	margin-top: 7px;
 }
 
@@ -676,7 +681,7 @@ body {
 	text-decoration: none;
 }
 .site-description {
-	font: italic 400 14px/2.4285714285 'Playfair Display', serif;
+	font: italic 400 14px/2.4285714285 "Playfair Display", serif;
 	margin: 0;
 	text-align: center;
 }
@@ -709,14 +714,14 @@ body {
 	position: relative;
 }
 .navigation-main li:after {
-	content: '\2022';
+	content: "\2022";
 	display: inline-block;
 	font-size: 11px;
 	margin-top: -4px;
 	vertical-align: middle;
 }
 .navigation-main li:last-child:after {
-	content:'';
+	content: "";
 }
 .navigation-main a {
 	display: inline-block;
@@ -739,7 +744,7 @@ body {
 	display: block;
 }
 .navigation-main li li:after {
-	content: '';
+	content: "";
 	display: block;
 	margin:0;
 }
@@ -808,7 +813,6 @@ body {
 	.main-small-navigation ul ul {
 		display: block;
 	}
-
 	.navigation-main ul {
 		display: none;
 	}
@@ -835,7 +839,7 @@ body {
 	vertical-align: middle;
 }
 .entry-title {
-	font: italic 700 68px/1 'Playfair Display', serif;
+	font: italic 700 68px/1 "Playfair Display", serif;
 	margin: 0;
 	max-width: 696px;
 }
@@ -859,7 +863,7 @@ body {
 	text-transform: uppercase;
 }
 .entry-meta span + span:before {
-	content: '\0020\007c\0020';
+	content: "\0020\007c\0020";
 	color: rgba(0, 0, 0, 0.2);
 }
 .byline {
@@ -880,7 +884,7 @@ body {
 	padding: 102px 0 68px;
 }
 .page-title {
-	font: italic 700 34px/1 'Playfair Display', serif;
+	font: italic 700 34px/1 "Playfair Display", serif;
 	margin-bottom: 34px;
 	text-align: center;
 }
@@ -972,6 +976,7 @@ body {
 .entry-content .video-player,
 .entry-summary .video-player {
 	margin-bottom: 34px;
+	padding: 0;
 }
 
 
@@ -995,7 +1000,7 @@ a.entry-format-badge:hover {
 	line-height: 2;
 }
 .entry-format-badge:before {
-	content: '\f100';
+	content: "\f100";
 }
 
 /* Aside */
@@ -1013,12 +1018,12 @@ a.entry-format-badge:hover {
 	opacity: 1;
 }
 .format-aside .entry-format-badge:before {
-	content: '\f101';
+	content: "\f101";
 }
 
 /* Image */
 .format-image .entry-format-badge:before {
-	content: '\f102';
+	content: "\f102";
 }
 .format-image.hentry {
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -1034,7 +1039,7 @@ a.entry-format-badge:hover {
 
 /* Quote */
 .format-quote .entry-format-badge:before {
-	content: '\f106';
+	content: "\f106";
 }
 .format-quote .entry-title {
 	font-size: 23px;
@@ -1052,13 +1057,13 @@ a.entry-format-badge:hover {
 
 /* link */
 .format-link .entry-format-badge:before {
-	content: '\f107';
+	content: "\f107";
 	margin-left: 2px;
 }
 
 /* Gallery */
 .format-gallery .entry-format-badge:before {
-	content: '\f103';
+	content: "\f103";
 }
 .format-gallery .entry-content {
 	margin-top: 0;
@@ -1073,12 +1078,11 @@ a.entry-format-badge:hover {
 	position: relative;
 }
 .format-video .entry-format-badge:before {
-	content: '\f104';
+	content: "\f104";
 }
 .format-video .band {
 	display: none;
 }
-
 
 
 /* =Media
@@ -1135,7 +1139,7 @@ img.aligncenter {
 }
 .wp-caption-text {
 	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+	box-sizing:      border-box;
 	font-size: 13px;
 	font-style: italic;
 	line-height: 1.3076923076;
@@ -1311,7 +1315,7 @@ span > object {
 .navigation-comment .previous,
 .navigation-comment .next {
 	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+	box-sizing:      border-box;
 	margin: 0;
 	height: auto;
 }
@@ -1331,7 +1335,7 @@ span > object {
 	padding: 102px 0;
 }
 .comments-title {
-	font: italic 700 34px/1 'Playfair Display', serif;
+	font: italic 700 34px/1 "Playfair Display", serif;
 	margin-bottom: 68px;
 	text-align: center;
 }
@@ -1395,7 +1399,7 @@ span > object {
 }
 .bypostauthor > article .comment-author > cite:after {
 	font-size: 16px;
-	content: '\f408';
+	content: "\f408";
 	position: absolute;
 		top: -10px;
 		right: -16px;
@@ -1441,7 +1445,7 @@ span > object {
 .comment-edit-link:before,
 .comment-reply-link:before {
 	color: #808080;
-	content: '\007c\0020';
+	content: "\007c\0020";
 }
 /* Comment form */
 .comments-area #respond {
@@ -1453,7 +1457,7 @@ li #respond {
 	padding: 34px 0;
 }
 .comments-area #respond h3 {
-	font: italic 700 34px/1 'Playfair Display', serif;
+	font: italic 700 34px/1 "Playfair Display", serif;
 	margin: 0 0 34px;
 	text-align: center;
 }
@@ -1496,7 +1500,7 @@ li #respond {
 }
 .comment-status {
 	color: #808080;
-	font: italic 13px/1.3076923076 Georgia, Times, 'Times New Roman', serif;
+	font: italic 13px/1.3076923076 Georgia, Times, "Times New Roman", serif;
 	margin: 0 auto 34px;
 	max-width: 696px;
 }
@@ -1507,7 +1511,7 @@ li #respond {
 
 .site-info {
 	color: #808080;
-	font-family: 'Playfair Display', serif;
+	font-family: "Playfair Display", serif;
 	font-size: 14px;
 	font-style: italic;
 	line-height: 1.2142857142;
@@ -1625,7 +1629,7 @@ li #respond {
 /* Akismet widget*/
 .widget_akismet_widget .a-stats a {
 	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+	box-sizing:      border-box;
 }
 
 /* Blogs I follow widget*/
@@ -1698,6 +1702,18 @@ li #respond {
 }
 .widget_contact_info #contact-info-map-canvas {
 	height: 264px;
+}
+
+/* Flickr Widget (WP.com) */
+.widget_flickr #flickr_badge_uber_wrapper a:link,
+.widget_flickr #flickr_badge_uber_wrapper a:active,
+.widget_flickr #flickr_badge_uber_wrapper a:visited,
+.widget_flickr #flickr_badge_uber_wrapper a:hover {
+	color: #fff;
+}
+.widget_flickr #flickr_badge_wrapper {
+	background-color: transparent;
+	border: none;
 }
 
 /* Gravatar Profile widget */
@@ -1848,7 +1864,7 @@ article.no-results input[type="search"] {
 }
 article.error404 .widget {
 	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+	box-sizing:      border-box;
 	font-family: Lato, sans-serif;
 	margin-bottom: 68px;
 }
@@ -1959,7 +1975,7 @@ article.error404 .widget_calendar #wp-calendar tbody a:hover {
 }
 #infinite-footer .container {
 	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+	box-sizing:      border-box;
 	padding: 4px 20px 1px;
 }
 #infinite-footer .blog-info,
@@ -2041,6 +2057,41 @@ img#wpstats {
 .entry-content .contact-form input[type="radio"],
 .entry-content .contact-form input[type="checkbox"] {
 	margin: 0 5px 5px 0;
+}
+
+
+/* =Jetpack: Slideshow
+----------------------------------------------- */
+
+.entry-content .slideshow-window {
+	background-color: #000;
+	border: 34px solid #000;
+	-moz-border-radius:    0;
+	-webkit-border-radius: 0;
+	-khtml-border-radius:  0;
+	border-radius:         0;
+	margin-bottom: 34px;
+}
+
+
+/* =WP.com
+----------------------------------------------- */
+
+/* Corrects line number misalignemnt in GitHub Gist embeds */
+.gist .gist-file .gist-data .line-numbers span {
+	line-height: 1.48;
+}
+.entry-content .gist table,
+.entry-summary .gist table {
+	margin-bottom: 0;
+}
+.entry-content .PDS_Poll,
+.entry-summary .PDS_Poll {
+	margin-bottom: 34px;
+}
+.comment-content .pd-rating {
+	font:700 13px/1.3076923076 Lato, sans-serif;
+	text-transform: uppercase;
 }
 
 
@@ -2133,7 +2184,7 @@ img#wpstats {
 		max-width: 840px;
 	}
 	.entry-meta span + span:before {
-		content: '';
+		content: "";
 	}
 	.entry-meta {
 		float: left;
@@ -2227,7 +2278,7 @@ img#wpstats {
 		height: 17px;
 	}
 	.format-video .entry-format-badge:before {
-		content: '\f104';
+		content: "\f104";
 		font-size: 16px;
 		line-height: 1;
 	}

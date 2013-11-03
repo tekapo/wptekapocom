@@ -33,7 +33,7 @@
 					'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'ryu' ) . '</span>',
 					'after'       => '</div>',
 					'link_before' => '<span>',
-					'link_after'  => '</span>'
+					'link_after'  => '</span>',
 				) );
 			?>
 		</div><!-- .entry-content -->

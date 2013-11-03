@@ -72,3 +72,15 @@ function ryu_unmute_content_filters() {
 // Remove content filters before formatted posts output, and add them back right after.
 add_action( 'ryu_formatted_posts_excerpt_before', 'ryu_mute_content_filters' );
 add_action( 'ryu_formatted_posts_excerpt_after', 'ryu_unmute_content_filters' );
+
+/**
+ * Use the Jetpack-bundled version of Tonesque if available
+ *
+ * @uses add_theme_support
+ * @action after_setup_theme
+ * @return null
+ */
+function ryu_support_tonesque() {
+	add_theme_support( 'tonesque' );
+}
+add_action( 'after_setup_theme', 'ryu_support_tonesque', 9 );

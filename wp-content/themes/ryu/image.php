@@ -18,70 +18,37 @@ $content_width = 1272;
 					<div class="entry-content">
 						<div class="entry-attachment">
 							<div class="attachment">
-								<?php
-									/**
-									 * Grab the IDs of all the image attachments in a gallery so we can get the URL of the next adjacent image in a gallery,
-									 * or the first image (if we're looking at the last image in a gallery), or, in a gallery of one, just the link to that image file
-									 */
-									$attachments = array_values( get_children( array(
-										'post_parent'    => $post->post_parent,
-										'post_status'    => 'inherit',
-										'post_type'      => 'attachment',
-										'post_mime_type' => 'image',
-										'order'          => 'ASC',
-										'orderby'        => 'menu_order ID'
-									) ) );
-									foreach ( $attachments as $k => $attachment ) {
-										if ( $attachment->ID == $post->ID )
-											break;
-									}
-									$k++;
-									// If there is more than 1 attachment in a gallery
-									if ( count( $attachments ) > 1 ) {
-										if ( isset( $attachments[ $k ] ) )
-											// get the URL of the next image attachment
-											$next_attachment_url = get_attachment_link( $attachments[ $k ]->ID );
-										else
-											// or get the URL of the first image attachment
-											$next_attachment_url = get_attachment_link( $attachments[ 0 ]->ID );
-									} else {
-										// or, if there's only 1 image, get the URL of the image
-										$next_attachment_url = esc_url( wp_get_attachment_url() );
-									}
-								?>
-
-								<a href="<?php echo esc_url( $next_attachment_url ); ?>" title="<?php echo esc_attr( strip_tags( get_the_title() ) ); ?>" rel="attachment"><?php
-									$attachment_size = apply_filters( 'ryu_attachment_size', array( 1272, 1272 ) ); // Filterable image size.
-									echo wp_get_attachment_image( $post->ID, $attachment_size );
-								?></a>
+								<?php ryu_the_attached_image(); ?>
 							</div><!-- .attachment -->
 						</div><!-- .entry-attachment -->
 
-						<?php the_content(); ?>
 						<?php
+							the_content();
 							wp_link_pages( array(
 								'before'      => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'ryu' ) . '</span>',
 								'after'       => '</div>',
 								'link_before' => '<span>',
-								'link_after'  => '</span>'
+								'link_after'  => '</span>',
 							) );
 						?>
 
 						<div class="comment-status">
-							<?php if ( comments_open() && pings_open() ) : // Comments and trackbacks open ?>
-								<?php printf( __( '<a class="comment-link" href="#respond" title="Post a comment">Post a comment</a> or leave a trackback: <a class="trackback-link" href="%s" title="Trackback URL for your post" rel="trackback">Trackback URL</a>.', 'ryu' ), esc_url( get_trackback_url() ) ); ?>
-							<?php elseif ( ! comments_open() && pings_open() ) : // Only trackbacks open ?>
-								<?php printf( __( 'Comments are closed, but you can leave a trackback: <a class="trackback-link" href="%s" title="Trackback URL for your post" rel="trackback">Trackback URL</a>.', 'ryu' ), esc_url( get_trackback_url() ) ); ?>
-							<?php elseif ( comments_open() && ! pings_open() ) : // Only comments open ?>
-								<?php _e( 'Trackbacks are closed, but you can <a class="comment-link" href="#respond" title="Post a comment">post a comment</a>.', 'ryu' ); ?>
-							<?php elseif ( ! comments_open() && ! pings_open() ) : // Comments and trackbacks closed ?>
-								<?php _e( 'Both comments and trackbacks are currently closed.', 'ryu' ); ?>
-							<?php endif; ?>
+							<?php
+								if ( comments_open() && pings_open() ) : // Comments and trackbacks open
+									printf( __( '<a class="comment-link" href="#respond" title="Post a comment">Post a comment</a> or leave a trackback: <a class="trackback-link" href="%s" title="Trackback URL for your post" rel="trackback">Trackback URL</a>.', 'ryu' ), esc_url( get_trackback_url() ) );
+								elseif ( ! comments_open() && pings_open() ) : // Only trackbacks open
+									printf( __( 'Comments are closed, but you can leave a trackback: <a class="trackback-link" href="%s" title="Trackback URL for your post" rel="trackback">Trackback URL</a>.', 'ryu' ), esc_url( get_trackback_url() ) );
+								elseif ( comments_open() && ! pings_open() ) : // Only comments open
+									_e( 'Trackbacks are closed, but you can <a class="comment-link" href="#respond" title="Post a comment">post a comment</a>.', 'ryu' );
+								elseif ( ! comments_open() && ! pings_open() ) : // Comments and trackbacks closed
+									_e( 'Both comments and trackbacks are currently closed.', 'ryu' );
+								endif;
+							?>
 						</div>
 					</div><!-- .entry-content -->
 
 					<header class="entry-header">
-						<h1 class="entry-title"><?php the_title(); ?></h1>
+						<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 					</header><!-- .entry-header -->
 
 					<footer class="entry-meta">
@@ -97,18 +64,19 @@ $content_width = 1272;
 								esc_attr( strip_tags( get_the_title( $post->post_parent ) ) ),
 								strip_tags( get_the_title( $post->post_parent ) )
 							);
+
+							edit_post_link( __( 'Edit', 'ryu' ), '<span class="edit-link">', '</span>' );
 						?>
-						<?php edit_post_link( __( 'Edit', 'ryu' ), '<span class="edit-link">', '</span>' ); ?>
 					</footer><!-- .entry-meta -->
 
-					<?php if ( ! empty( $post->post_excerpt ) ) : ?>
+					<?php if ( has_excerpt() ) : ?>
 					<div class="entry-caption">
 						<?php the_excerpt(); ?>
 					</div><!-- .entry-caption -->
 					<?php endif; ?>
 
 				</div><!-- .entry-wrap -->
-			</article><!-- #post-<?php the_ID(); ?> -->
+			</article><!-- #post-## -->
 
 			<nav role="navigation" id="image-navigation" class="navigation-image clear double">
 				<?php next_image_link( false, __( '<div class="next"><span class="meta-nav">&rarr;</span> <span class="text-nav">Next</span></div>', 'ryu' ) ); ?>

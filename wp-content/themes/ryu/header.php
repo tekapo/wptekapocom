@@ -36,6 +36,18 @@
 	$vimeo_link = get_theme_mod( 'vimeo_link' );
 	$youtube_link = get_theme_mod( 'youtube_link' );
 	$tumblr_link = get_theme_mod( 'tumblr_link' );
+	$social_links = ( '' != $email_link
+		|| '' != $twitter_link
+		|| '' != $facebook_link
+		|| '' != $pinterest_link
+		|| '' != $google_plus_link
+		|| '' != $flickr_link
+		|| '' != $github_link
+		|| '' != $dribbble_link
+		|| '' != $vimeo_link
+		|| '' != $youtube_link
+		|| '' != $tumblr_link
+	) ? true : false;
 ?>
 
 <div id="page" class="hfeed site">
@@ -51,21 +63,7 @@
 	</div>
 	<?php endif ;?>
 
-	<?php
-		if ( '' != $email_link
-		  || '' != $twitter_link
-		  || '' != $facebook_link
-		  || '' != $pinterest_link
-		  || '' != $google_plus_link
-		  || '' != $linkedin_link
-		  || '' != $flickr_link
-		  || '' != $github_link
-		  || '' != $dribbble_link
-		  || '' != $vimeo_link
-		  || '' != $youtube_link
-		  || '' != $tumblr_link
-		) :
-	?>
+	<?php if ( $social_links ) : ?>
 	<div id="social-links-wrapper" class="toppanel hide">
 		<ul class="social-links clear">
 			<?php if ( is_email( $email_link ) ) : ?>
@@ -187,21 +185,7 @@
 			</li>
 			<?php endif ;?>
 
-			<?php
-				if ( '' != $email_link
-				  || '' != $twitter_link
-				  || '' != $facebook_link
-				  || '' != $pinterest_link
-				  || '' != $google_plus_link
-				  || '' != $linkedin_link
-				  || '' != $flickr_link
-				  || '' != $github_link
-				  || '' != $dribbble_link
-				  || '' != $vimeo_link
-				  || '' != $youtube_link
-				  || '' != $tumblr_link
-				) :
-			?>
+			<?php if ( $social_links ) : ?>
 			<li class="social-links-trigger">
 				<a href="#" class="genericon" title="<?php esc_attr_e( 'Connect', 'ryu' ); ?>">
 					<span class="screen-reader-text"><?php _e( 'Connect', 'ryu' ); ?></span>
